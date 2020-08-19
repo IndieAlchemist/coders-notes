@@ -11,6 +11,8 @@ This web application has the intention of creating a community of coders who lik
 
 If you are a **programmer** you can check the [Issues](https://github.com/IndieAlchemist/coders-notes/issues) section and submit a [Pull Request](https://github.com/IndieAlchemist/coders-notes/pulls).
 
+> git clone https://github.com/IndieAlchemist/coders-notes.git
+
 If you are a **tester** and you found a bug post it on the [Issues](https://github.com/IndieAlchemist/coders-notes/issues) section with the **bug label**.
 
 If you think of a nice feature you can post it  on the [Issues](https://github.com/IndieAlchemist/coders-notes/issues) section with the **enhancement label**.
