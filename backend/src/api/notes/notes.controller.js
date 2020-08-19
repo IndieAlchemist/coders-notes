@@ -25,10 +25,11 @@ const getNotes = async (req, res, next) => {
 
 const addNote = async (req, res, next) => {
     try {
-        const { title, content, author } = req.body;
-        if (!title || !content)
-            throw new ReferenceError('Make sure the request contains title and content');
-        const { _id } = await new Note({ title, content, author }).save();
+        const { title, description, content, author } = req.body;
+        console.log(description);
+        if (!title || !description || !content)
+            throw new ReferenceError('Make sure the request contains title description and content');
+        const { _id } = await new Note({ title, description, content, author }).save();
         res.json({
             status: 200,
             message: `Note with ID: ${_id} has been added successfully to the DB`,

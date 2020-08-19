@@ -18,3 +18,8 @@ If you think of a nice feature you can post it  on the [Issues](https://github.c
 If you just like the project, tell others about it!
 
 Any contribution is appreciated.
+
+# Instalation
+
+#Command for install packages - "npm install"
+#Comman to start project - "npm run dev"
