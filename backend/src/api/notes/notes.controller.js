@@ -26,7 +26,6 @@ const getNotes = async (req, res, next) => {
 const addNote = async (req, res, next) => {
     try {
         const { title, description, content, author } = req.body;
-        console.log(description);
         if (!title || !description || !content)
             throw new ReferenceError('Make sure the request contains title description and content');
         const { _id } = await new Note({ title, description, content, author }).save();
@@ -35,6 +34,29 @@ const addNote = async (req, res, next) => {
             message: `Note with ID: ${_id} has been added successfully to the DB`,
         });
     } catch (error) {
+        if (error instanceof ReferenceError) res.status(404);
+        next(error);
+    }
+}
+
+const updateNote = async (req, res, next) => {
+    try {
+        const { id: _id } = req.params;
+        if (!/^[a-fA-F0-9]{24}$/.test(req.params.id))
+            throw new ReferenceError('Invalid Note ID!');
+
+            const { title, description, content, author } = req.body;
+            if (!title || !description || !content)
+                throw new ReferenceError('Make sure the request contains title description and content');
+
+        const updateNote = await Note.findByIdAndUpdate(_id, { title, description, content, author }, { new: true }).exec();
+
+        if (!updateNote) {
+            throw new ReferenceError('There is no Note to update with that ID.');
+        }
+        res.json(updateNote);
+    }
+    catch (error) {
         if (error instanceof ReferenceError) res.status(404);
         next(error);
     }
@@ -62,5 +84,6 @@ const removeNote = async (req, res, next) => {
 module.exports = {
     getNotes,
     addNote,
+    updateNote,
     removeNote
 }
