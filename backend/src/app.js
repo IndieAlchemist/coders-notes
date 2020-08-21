@@ -5,7 +5,7 @@ const routes = require('./routes');
 require('./helpers/databaseConnection');
 
 //IMPORT MIDDLEWARE
-
+const { errorHandler, notFound } = require('./middleware');
 
 //INITIALIZE SERVER
 const app = express();
@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
 app.use(routes);
 
 //APP ERROR HANDLERS
-
+app.use(notFound);
+app.use(errorHandler);
 
 
 module.exports = app;
